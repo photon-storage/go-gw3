@@ -8,7 +8,7 @@ import (
 	"testing"
 	"time"
 
-	crypto "github.com/libp2p/go-libp2p/core/crypto"
+	libp2pcrypto "github.com/libp2p/go-libp2p/core/crypto"
 
 	"github.com/photon-storage/go-common/testing/require"
 
@@ -18,9 +18,9 @@ import (
 
 func TestSign(t *testing.T) {
 	url := "/url/to/request"
-	sk0, pk0, err := crypto.GenerateEd25519Key(rand.Reader)
+	sk0, pk0, err := libp2pcrypto.GenerateEd25519Key(rand.Reader)
 	require.NoError(t, err)
-	_, pk1, err := crypto.GenerateEd25519Key(rand.Reader)
+	_, pk1, err := libp2pcrypto.GenerateEd25519Key(rand.Reader)
 	require.NoError(t, err)
 
 	cases := []struct {
