@@ -8,10 +8,8 @@ import (
 
 var (
 	pregens = [10]libp2pcrypto.PrivKey{
-		// Dev - starbase key
 		// CAESIHnUcGM7CitSdYMLIFMEoy1yQy8dAE7rtKJDJ5kQybXd
 		toE225519("CAESQGw2ew4pJo+Afsgmzv4VGnYehtQhAF7ZFxImnB5eXhpHedRwYzsKK1J1gwsgUwSjLXJDLx0ATuu0okMnmRDJtd0="),
-		// Dev - falcon key
 		// CAESIHCp/6a6fHbSvpS3e64J545mB1wUnKJ8TPDrgqwSHmqY
 		toE225519("CAESQOiMDZG28QD6UTZjXsT4sRgWf4iKYIA5y+wNibdp4OQMcKn/prp8dtK+lLd7rgnnjmYHXBSconxM8OuCrBIeapg="),
 		// CAESIJ3vdUtmgwODmeXfi4Zjz0CqiPcKRQXOC7LE/zWz86Ll
