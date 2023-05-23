@@ -35,6 +35,7 @@ const (
 
 	// IPFS native params.
 	ParamIPFSArg      = "arg"
+	ParamIPFSKey      = "key"
 	ParamIPFSProgress = "progress"
 	ParamIPFSType     = "type"
 	ParamIPFSFormat   = "format"
