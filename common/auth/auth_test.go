@@ -116,7 +116,7 @@ func TestSign(t *testing.T) {
 					SetArg(http.ArgP3Node, "localhost:8080")
 
 				require.ErrorIs(t,
-					auth.ErrReqDateTooOld,
+					auth.ErrReqDateObsolete,
 					auth.SignRequest(r, a, sk0))
 			},
 		},
