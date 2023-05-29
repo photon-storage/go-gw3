@@ -125,7 +125,7 @@ func CanonicalizeURI(path string) string {
 		if part == "" {
 			continue
 		}
-		vals = append(vals, strings.ToLower(part))
+		vals = append(vals, part)
 	}
 
 	return "/" + strings.Join(vals, "/")
