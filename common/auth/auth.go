@@ -16,16 +16,12 @@ import (
 
 // Predefined errors for auth.
 var (
-	ErrReqDateMissing = errors.New("request date missing")
-	ErrReqDateTooOld  = errors.New("request date too old")
-	ErrReqNodeMissing = errors.New("request node missing")
-	ErrReqSigExists   = errors.New("request signature parameter already exists")
-	ErrReqSigMissing  = errors.New("request signature parameter missing")
-	ErrReqSigFailure  = errors.New("request signature verification failure")
-)
-
-var (
-	maxDelayTolerance = 1 * time.Minute
+	ErrReqDateMissing  = errors.New("request date missing")
+	ErrReqDateObsolete = errors.New("request date obsolete")
+	ErrReqNodeMissing  = errors.New("request node missing")
+	ErrReqSigExists    = errors.New("request signature parameter already exists")
+	ErrReqSigMissing   = errors.New("request signature parameter missing")
+	ErrReqSigFailure   = errors.New("request signature verification failure")
 )
 
 // SignRequest is a API authentication scheme similar to AWS S3.
@@ -35,7 +31,7 @@ func SignRequest(
 	args *http.Args,
 	sk libp2pcrypto.PrivKey,
 ) error {
-	if _, err := ValidateTimestamp(args); err != nil {
+	if _, err := ValidateTimestamp(args, 5*time.Second); err != nil {
 		return err
 	}
 
@@ -131,7 +127,10 @@ func CanonicalizeURI(path string) string {
 	return "/" + strings.Join(vals, "/")
 }
 
-func ValidateTimestamp(args *http.Args) (time.Time, error) {
+func ValidateTimestamp(
+	args *http.Args,
+	tolerance time.Duration,
+) (time.Time, error) {
 	var ts time.Time
 	utime := args.GetArg(http.ArgP3Unixtime)
 	if utime != "" {
@@ -146,8 +145,8 @@ func ValidateTimestamp(args *http.Args) (time.Time, error) {
 	if ts.IsZero() {
 		return time.Time{}, ErrReqDateMissing
 	}
-	if ts.Before(time.Now().Add(-maxDelayTolerance)) {
-		return time.Time{}, ErrReqDateTooOld
+	if time.Since(ts).Abs() > tolerance {
+		return time.Time{}, ErrReqDateObsolete
 	}
 
 	return ts, nil
