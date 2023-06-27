@@ -19,6 +19,7 @@ const (
 
 	ParamP3Unixtime = "ts"
 	ParamP3Size     = "size"
+	ParamP3Boundary = "boundary"
 	ParamP3AuthOnly = "auth-only"
 
 	// Args used for communicating between internal services (encoded in args).
