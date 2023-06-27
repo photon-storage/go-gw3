@@ -41,6 +41,7 @@ const (
 	ParamIPFSType     = "type"
 	ParamIPFSFormat   = "format"
 	ParamIPFSFileName = "filename"
+	ParamIPFSPinRoots = "pin-roots"
 )
 
 type Args struct {
