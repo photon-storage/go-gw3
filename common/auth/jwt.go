@@ -12,6 +12,7 @@ type Claims struct {
 	AccountID uint64
 	Provider  string
 	Username  string
+	Perm      uint64
 	jwt.RegisteredClaims
 }
 
