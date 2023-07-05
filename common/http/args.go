@@ -14,6 +14,7 @@ import (
 const (
 	// HTTP headers & params used for requesting APIs from external sources.
 	HeaderAuthorization = "Authorization"
+	HeaderP3JWTToken    = "X-JWT-Token"
 	HeaderP3AccessKey   = "X-Access-Key"
 	HeaderP3AccessSig   = "X-Access-Signature"
 
