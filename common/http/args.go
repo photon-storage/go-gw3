@@ -72,7 +72,7 @@ func NewArgs() *Args {
 }
 
 func DecodeArgs(v string) (*Args, error) {
-	dec, err := base64.StdEncoding.DecodeString(v)
+	dec, err := base64.URLEncoding.DecodeString(v)
 	if err != nil {
 		return nil, err
 	}
@@ -194,5 +194,5 @@ func (a *Args) Encode() string {
 	if err := w.Close(); err != nil {
 		panic(err)
 	}
-	return base64.StdEncoding.EncodeToString(b.Bytes())
+	return base64.URLEncoding.EncodeToString(b.Bytes())
 }
