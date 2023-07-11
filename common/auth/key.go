@@ -12,13 +12,16 @@ func EncodePk(pk libp2pcrypto.PubKey) (string, error) {
 		return "", err
 	}
 
-	return base64.StdEncoding.EncodeToString(bytes), nil
+	return base64.URLEncoding.EncodeToString(bytes), nil
 }
 
 func DecodePk(str string) (libp2pcrypto.PubKey, error) {
-	bytes, err := base64.StdEncoding.DecodeString(str)
+	bytes, err := base64.URLEncoding.DecodeString(str)
 	if err != nil {
-		return nil, err
+		bytes, err = base64.StdEncoding.DecodeString(str)
+		if err != nil {
+			return nil, err
+		}
 	}
 
 	return libp2pcrypto.UnmarshalPublicKey(bytes)
@@ -30,13 +33,16 @@ func EncodeSk(sk libp2pcrypto.PrivKey) (string, error) {
 		return "", err
 	}
 
-	return base64.StdEncoding.EncodeToString(bytes), nil
+	return base64.URLEncoding.EncodeToString(bytes), nil
 }
 
 func DecodeSk(str string) (libp2pcrypto.PrivKey, error) {
-	bytes, err := base64.StdEncoding.DecodeString(str)
+	bytes, err := base64.URLEncoding.DecodeString(str)
 	if err != nil {
-		return nil, err
+		bytes, err = base64.StdEncoding.DecodeString(str)
+		if err != nil {
+			return nil, err
+		}
 	}
 
 	return libp2pcrypto.UnmarshalPrivateKey(bytes)

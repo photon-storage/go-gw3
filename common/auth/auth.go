@@ -82,17 +82,18 @@ func VerifyRequest(r *gohttp.Request, pk libp2pcrypto.PubKey) error {
 		pk,
 	)
 }
+
 func SignBase64(data []byte, sk libp2pcrypto.PrivKey) (string, error) {
 	sig, err := sk.Sign(data)
 	if err != nil {
 		return "", fmt.Errorf("error signing request: %w", err)
 	}
 
-	return base64.StdEncoding.EncodeToString(sig), nil
+	return base64.URLEncoding.EncodeToString(sig), nil
 }
 
 func VerifySigBase64(data, sig string, pk libp2pcrypto.PubKey) error {
-	decSig, err := base64.StdEncoding.DecodeString(sig)
+	decSig, err := base64.URLEncoding.DecodeString(sig)
 	if err != nil {
 		return fmt.Errorf("error decoding signature: %w", err)
 	}
