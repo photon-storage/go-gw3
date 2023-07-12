@@ -14,6 +14,7 @@ import (
 const (
 	// HTTP headers & params used for requesting APIs from external sources.
 	HeaderAuthorization  = "Authorization"
+	HeaderForwardedHost  = "X-Forwarded-Host"
 	HeaderP3JWTToken     = "X-JWT-Token"
 	HeaderP3AccessKey    = "X-Access-Key"
 	HeaderP3AccessSecret = "X-Access-Secret"
@@ -44,6 +45,8 @@ const (
 	ParamIPFSFormat   = "format"
 	ParamIPFSFileName = "filename"
 	ParamIPFSPinRoots = "pin-roots"
+
+	KnownHostNoSubdomain = "no_subdomain"
 )
 
 type Args struct {
