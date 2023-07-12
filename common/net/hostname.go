@@ -8,7 +8,7 @@ import (
 
 const (
 	HashLen    = 16
-	DomainName = "gw3.io"
+	DomainName = "gtw3.io"
 )
 
 func GW3Hostname(ip string) string {
