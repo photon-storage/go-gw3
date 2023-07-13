@@ -49,6 +49,7 @@ func SignRequest(
 	sig, err := SignBase64(
 		[]byte(GenStringToSign(
 			r.Method,
+			r.Host,
 			CanonicalizeURI(r.URL.Path),
 			p3Args,
 		)),
@@ -75,6 +76,7 @@ func VerifyRequest(r *gohttp.Request, pk libp2pcrypto.PubKey) error {
 	return VerifySigBase64(
 		GenStringToSign(
 			r.Method,
+			r.Host,
 			CanonicalizeURI(r.URL.Path),
 			r.URL.Query().Get(http.ParamP3Args),
 		),
@@ -110,8 +112,8 @@ func VerifySigBase64(data, sig string, pk libp2pcrypto.PubKey) error {
 	return nil
 }
 
-func GenStringToSign(method, uri, arg string) string {
-	return method + "\n" + uri + "\n" + arg
+func GenStringToSign(method, host, uri, arg string) string {
+	return method + "\n" + host + "\n" + uri + "\n" + arg
 }
 
 func CanonicalizeURI(path string) string {
