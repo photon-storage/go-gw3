@@ -17,7 +17,7 @@ import (
 )
 
 func TestSign(t *testing.T) {
-	url := "/url/to/request"
+	url := "https://example.com/path/to/request"
 	sk0, pk0, err := libp2pcrypto.GenerateEd25519Key(rand.Reader)
 	require.NoError(t, err)
 	_, pk1, err := libp2pcrypto.GenerateEd25519Key(rand.Reader)
@@ -51,7 +51,7 @@ func TestSign(t *testing.T) {
 			},
 		},
 		{
-			name: "verification failure",
+			name: "invalid signing key",
 			run: func(t *testing.T) {
 				r, err := gohttp.NewRequest(
 					"PUT",
@@ -72,7 +72,36 @@ func TestSign(t *testing.T) {
 				require.NoError(t, auth.SignRequest(r, a, sk0))
 				require.ErrorIs(t,
 					auth.ErrReqSigFailure,
-					auth.VerifyRequest(r, pk1))
+					auth.VerifyRequest(r, pk1),
+				)
+			},
+		},
+		{
+			name: "invalid host",
+			run: func(t *testing.T) {
+				r, err := gohttp.NewRequest(
+					"PUT",
+					url,
+					bytes.NewReader([]byte("request body")),
+				)
+				require.NoError(t, err)
+
+				a := http.NewArgs().
+					SetParam("x-p3-parameter1", "parameter1").
+					SetParam("x-p3-parameter2", "parameter2").
+					SetParam("x-p3-parameter3", "parameter3").
+					SetArg(http.ArgP3Unixtime,
+						fmt.Sprintf("%v", time.Now().Unix()),
+					).
+					SetArg(http.ArgP3Node, "localhost:8080")
+
+				require.NoError(t, auth.SignRequest(r, a, sk0))
+
+				r.Host = "example.io"
+				require.ErrorIs(t,
+					auth.ErrReqSigFailure,
+					auth.VerifyRequest(r, pk0),
+				)
 			},
 		},
 		{
@@ -93,7 +122,8 @@ func TestSign(t *testing.T) {
 
 				require.ErrorIs(t,
 					auth.ErrReqDateMissing,
-					auth.SignRequest(r, a, sk0))
+					auth.SignRequest(r, a, sk0),
+				)
 			},
 		},
 		{
@@ -117,7 +147,8 @@ func TestSign(t *testing.T) {
 
 				require.ErrorIs(t,
 					auth.ErrReqDateObsolete,
-					auth.SignRequest(r, a, sk0))
+					auth.SignRequest(r, a, sk0),
+				)
 			},
 		},
 		{
@@ -140,7 +171,8 @@ func TestSign(t *testing.T) {
 
 				require.ErrorIs(t,
 					auth.ErrReqNodeMissing,
-					auth.SignRequest(r, a, sk0))
+					auth.SignRequest(r, a, sk0),
+				)
 			},
 		},
 	}
