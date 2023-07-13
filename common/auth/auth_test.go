@@ -95,8 +95,9 @@ func TestSign(t *testing.T) {
 					).
 					SetArg(http.ArgP3Node, "localhost:8080")
 
-				r.Host = "example.io"
 				require.NoError(t, auth.SignRequest(r, a, sk0))
+
+				r.Host = "example.io"
 				require.ErrorIs(t,
 					auth.ErrReqSigFailure,
 					auth.VerifyRequest(r, pk0),
