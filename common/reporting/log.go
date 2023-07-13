@@ -2,6 +2,7 @@ package reporting
 
 type AuthReq struct {
 	Method string `json:"m"`
+	Host   string `json:"h"`
 	URI    string `json:"u"`
 	Args   string `json:"a"`
 	Sig    string `json:"s"`
