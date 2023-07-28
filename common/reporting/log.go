@@ -13,8 +13,9 @@ type LogV1 struct {
 
 	Req AuthReq `json:"r"`
 
-	CidSize int   `json:"sz"`
-	Ingress int   `json:"i"`
-	Egress  int   `json:"e"`
-	At      int64 `json:"at"`
+	InProgress bool  `json:"ipr"`
+	CidSize    int   `json:"sz"`
+	Ingress    int   `json:"i"`
+	Egress     int   `json:"e"`
+	At         int64 `json:"at"`
 }
