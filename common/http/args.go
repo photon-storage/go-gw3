@@ -45,6 +45,7 @@ const (
 	ParamIPFSFormat   = "format"
 	ParamIPFSFileName = "filename"
 	ParamIPFSPinRoots = "pin-roots"
+	ParamIPFSStats    = "stats"
 
 	KnownHostNoSubdomain = "no_subdomain"
 )
