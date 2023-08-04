@@ -38,14 +38,15 @@ const (
 	ParamP3Pk   = "spk"
 
 	// IPFS native params.
-	ParamIPFSArg      = "arg"
-	ParamIPFSKey      = "key"
-	ParamIPFSProgress = "progress"
-	ParamIPFSType     = "type"
-	ParamIPFSFormat   = "format"
-	ParamIPFSFileName = "filename"
-	ParamIPFSPinRoots = "pin-roots"
-	ParamIPFSStats    = "stats"
+	ParamIPFSArg       = "arg"
+	ParamIPFSKey       = "key"
+	ParamIPFSProgress  = "progress"
+	ParamIPFSType      = "type"
+	ParamIPFSFormat    = "format"
+	ParamIPFSFileName  = "filename"
+	ParamIPFSPinRoots  = "pin-roots"
+	ParamIPFSStats     = "stats"
+	ParamIPFSRecursive = "recursive"
 
 	KnownHostNoSubdomain = "no_subdomain"
 )
