@@ -38,15 +38,16 @@ const (
 	ParamP3Pk   = "spk"
 
 	// IPFS native params.
-	ParamIPFSArg       = "arg"
-	ParamIPFSKey       = "key"
-	ParamIPFSProgress  = "progress"
-	ParamIPFSType      = "type"
-	ParamIPFSFormat    = "format"
-	ParamIPFSFileName  = "filename"
-	ParamIPFSPinRoots  = "pin-roots"
-	ParamIPFSStats     = "stats"
-	ParamIPFSRecursive = "recursive"
+	ParamIPFSArg         = "arg"
+	ParamIPFSKey         = "key"
+	ParamIPFSProgress    = "progress"
+	ParamIPFSType        = "type"
+	ParamIPFSFormat      = "format"
+	ParamIPFSFileName    = "filename"
+	ParamIPFSPinRoots    = "pin-roots"
+	ParamIPFSStats       = "stats"
+	ParamIPFSRecursive   = "recursive"
+	ParamIPFSConcurrency = "concurrency" // gw3 custom param
 
 	KnownHostNoSubdomain = "no_subdomain"
 )
