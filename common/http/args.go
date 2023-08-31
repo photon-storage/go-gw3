@@ -20,10 +20,11 @@ const (
 	HeaderP3AccessSecret = "X-Access-Secret"
 	HeaderP3AccessSig    = "X-Access-Signature"
 
-	ParamP3Unixtime = "ts"
-	ParamP3Size     = "size"
-	ParamP3Boundary = "boundary"
-	ParamP3AuthOnly = "auth-only"
+	ParamP3Unixtime   = "ts"
+	ParamP3Size       = "size"
+	ParamP3Boundary   = "boundary"
+	ParamP3AuthOnly   = "auth-only"
+	ParamP3AccessCode = "accesscode"
 
 	// Args used for communicating between internal services (encoded in args).
 	ArgP3Node      = "arg-node"
