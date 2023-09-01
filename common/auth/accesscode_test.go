@@ -22,7 +22,7 @@ func TestAccessCode(t *testing.T) {
 	require.Equal(t, ac, s0)
 	require.Equal(t, "abcdef", s1)
 
-	_, _, err = auth.ExtractLeadingAccessCode("123456789abcdef123")
+	_, _, err = auth.ExtractLeadingAccessCode("a23456789abcdef123")
 	require.ErrorIs(t, auth.ErrAccessCodeNotFound, err)
 	_, _, err = auth.ExtractLeadingAccessCode("1fabc")
 	require.ErrorIs(t, auth.ErrAccessCodeNotFound, err)
